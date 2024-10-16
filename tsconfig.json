@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
+    "target": "ES2020",  // Or a higher version
+    "module": "ESNext",   // Use ESNext or ES6
+    "moduleResolution": "node",
+    "esModuleInterop": true, // Allows default imports from CommonJS modules
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts", "spec/index.spec.ts"],
+  "include": ["src/**/*.ts", "spec/**/*.ts"], // Adjust paths as needed
   "exclude": ["node_modules"]
 }
