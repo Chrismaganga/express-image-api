@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2020",  // Or a higher version
-    "module": "ESNext",   // Use ESNext or ES6
-    "moduleResolution": "node",
-    "esModuleInterop": true, // Allows default imports from CommonJS modules
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts", "spec/**/*.ts"], // Adjust paths as needed
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }
