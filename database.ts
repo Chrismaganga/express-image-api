@@ -1,21 +1,23 @@
-const mysql = require('mysql2');
+import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
 
-// Create a connection to the database
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root', // replace 'root' with your MySQL username
-  database: 'uploader', // replace with your MySQL database name
-  password: 'your_password', // replace with your MySQL password
-  port: 3306, // default MySQL port is 3306
+// Load environment variables from .env file
+dotenv.config();
+
+// Create a connection pool to the database
+const pool = mysql.createPool({
+  host: process.env.DB_HOST || 'localhost', // Default to localhost
+  user: process.env.DB_USER || 'root',      // Default MySQL user
+  database: process.env.DB_NAME || 'uploader', // Default database name
+  password: process.env.DB_PASSWORD || '',   // Default password
+  port: Number(process.env.DB_PORT) || 3306, // Default MySQL port
 });
 
-// Connect to the database
-connection.connect((err: { message: any; }) => {
-  if (err) {
-    console.log("Something went wrong!", err.message);
-  } else {
-    console.log("Connected to MySQL DB");
-  }
-});
+// Function to get a connection from the pool
+export const getConnection = async () => {
+  const connection = await pool.getConnection();
+  return connection;
+};
 
-module.exports = connection;
+// Optional: Export pool for queries if needed
+export default pool;
